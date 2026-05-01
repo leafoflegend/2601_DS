@@ -2,6 +2,7 @@
   "name": "2601_ds",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node dist/linear_data_structures/linked_list.js"

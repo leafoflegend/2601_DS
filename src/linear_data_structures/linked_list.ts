@@ -1,4 +1,4 @@
-class LinkedListNode {
+export class LinkedListNode {
     value: any = null;
 
     next: null | LinkedListNode = null;
@@ -50,6 +50,8 @@ class LinkedList {
         const newTail = this.head.insert(value);
 
         this.tail = newTail;
+
+        return this;
     };
 
     iterate = (cb: (value: any) => void) => this.head.iterate(cb);
@@ -62,4 +64,4 @@ const ll = new LinkedList(1);
 ll.insert(2);
 ll.insert(3);
 
-console.log('Head: ', ll.head.value, 'Tail :', ll.tail.value);
+export default LinkedList;
