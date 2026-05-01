@@ -14,26 +14,33 @@ linkedListTwo.insert(3).insert(4).insert(5).insert(9).insert(10);
 
 // Iterative
 const iterativeMergeLinkedLists = (headOne: LinkedListNode, headTwo: LinkedListNode) => {
+    // NOTE: We are merging into list one - we are slowly moving all nodes into the first list.
     let nextHeadOne: LinkedListNode | null = headOne;
     let nextHeadTwo: LinkedListNode | null = headTwo;
     let prevHeadOne: LinkedListNode | null = null;
 
+    // NOTE: While both lists have nodes we continue running.
     while (nextHeadOne && nextHeadTwo) {
-        // console.log('Next One: ', nextHeadOne?.value, 'Next Two: ', nextHeadTwo?.value);
-
+        // NOTE: If the first lists current node is less than the second lists, we move the current node of list one forward. We store the previous node for later.
         if (nextHeadOne.value <= nextHeadTwo.value) {
             prevHeadOne = nextHeadOne;
             nextHeadOne = nextHeadOne.next;
         } else {
+            // NOTE: When the first list DOES have a greater number, we put the second lists number in front of the first lists PREVIOUS number. This means we need to do a bit of referential ju-jitsu to make sure all pointers are pointing at the right things.
             if (prevHeadOne) {
+                // NOTE: This is the important line, the previous first lists number gets the second lists current number put in front of it.
                 prevHeadOne.next = nextHeadTwo;
             }
+            // NOTE: Kind of a misnomer, but we want the previous number at the prev node. Now that number is from the second list.
             prevHeadOne = nextHeadTwo;
+            // NOTE: Progress the second list forward.
             nextHeadTwo = nextHeadTwo.next;
+            // NOTE: Then remember, the current number of the first list was GREATER! We put it in front of the second lists number we just placed.
             prevHeadOne.next = nextHeadOne;
         }
     }
 
+    // NOTE: If the first list is at its end, just append the second list.
     if (nextHeadOne === null && prevHeadOne) {
         prevHeadOne.next = nextHeadTwo;
     }
