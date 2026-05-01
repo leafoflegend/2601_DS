@@ -1,0 +1,16 @@
+{
+  "name": "2601_ds",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/linear_data_structures/linked_list.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "typescript": "^6.0.3"
+  }
+}
