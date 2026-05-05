@@ -34,7 +34,7 @@ Output: false
 
 Example 6:
 
-Input: s = "i love cats (and dogs)"
+Input: s = "[i love cats (and dogs)]"
 Output: true
 
 Example 7:
@@ -48,6 +48,41 @@ Input: s = ""
 Output: true
 */
 
-const validParenthesis = (aString) => {
-    // TODO: Solve the problem!
+// O(n)
+const validParenthesis = (aString: string): boolean => {
+    const openingStack = [];
+    const allBrackets: { [key: string]: boolean } = {
+        '(': true,
+        ')': true,
+        '{': true,
+        '}': true,
+        '[': true,
+        ']': true,
+    };
+    const bracketMap: { [key: string]: string } = {
+        ')': '(',
+        '}': '{',
+        ']': '[',
+    };
+
+    for (let i = 0; i <= aString.length; ++i) {
+        const currentCharacter: string = aString[i] as string;
+
+        if (allBrackets[currentCharacter]) {
+            if (!bracketMap[currentCharacter]) {
+                openingStack.push(currentCharacter);
+            } else {
+                const lastOpenCharacter = openingStack.pop();
+
+                if (bracketMap[currentCharacter] !== lastOpenCharacter) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    return openingStack.length === 0;
 }
+
+console.log('True: ', validParenthesis('[i love cats (and dogs)]')); // => true
+console.log('False: ', validParenthesis(']]{}')); // => false
