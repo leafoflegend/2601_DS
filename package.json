@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/linear_data_structures/linked_list.js"
+    "start": "node dist/trees/bst.js"
   },
   "keywords": [],
   "author": "",
